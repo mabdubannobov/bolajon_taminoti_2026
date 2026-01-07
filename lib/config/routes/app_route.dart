@@ -1,22 +1,20 @@
-import 'package:bolajon_taminoti_2026/features/home/presentation/home_page.dart.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../features/dashboard/presentation/main_navigation.dart';
+// DIQQAT: .dart.dart ems, .dart bo'lishi kerak
+import '../../features/home/presentation/home_page.dart';
 
-// Global kalit (Contextsiz navigatsiya uchun)
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _shellNavigatorKey = GlobalKey<NavigatorState>();
+// _shellNavigatorKey shart emas, chunki StatefulShellRoute o'zi boshqaradi
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/home', // Dastur shu yerdan boshlanadi
+    initialLocation: '/home',
     routes: [
-      // SHELL ROUTE (Bottom Bar bor sahifalar)
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
-          // Biz yasagan MainNavigation vidjeti shu yerda ishlatiladi
           return MainNavigation(navigationShell: navigationShell);
         },
         branches: [
@@ -29,8 +27,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               ),
             ],
           ),
-
-          // 2. Buyurtma (Orders)
+          // 2. Buyurtma
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -40,8 +37,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               ),
             ],
           ),
-
-          // 3. Taomnoma (Menu)
+          // 3. Taomnoma
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -51,8 +47,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               ),
             ],
           ),
-
-          // 4. Davomat (Attendance) - Hamshira uchun
+          // 4. Davomat
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -62,8 +57,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               ),
             ],
           ),
-
-          // 5. Savat (Cart)
+          // 5. Savat
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -73,8 +67,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               ),
             ],
           ),
-
-          // 6. Hisob (Profile)
+          // 6. Profil
           StatefulShellBranch(
             routes: [
               GoRoute(
